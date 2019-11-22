@@ -9,16 +9,16 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AppComponent implements OnInit{
   title = 'Proyecto';
 
-  constructor(private spinnerService: NgxSpinnerService){}
+  constructor(){}//private spinnerService: NgxSpinnerService){}
 
   ngOnInit(){
-    this.spinner();
+    //this.spinner();
   }
 
-  spinner(): void{
+  /*spinner(): void{
     this.spinnerService.show();
     setTimeout(() => {
       this.spinnerService.hide();
     }, 3000);
-  }
+  }*/
 }
