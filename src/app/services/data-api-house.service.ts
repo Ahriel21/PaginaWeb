@@ -31,6 +31,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesYear(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -41,6 +42,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesMonth(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -51,6 +53,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesDay(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -61,6 +64,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesHour(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -71,6 +75,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesMinute(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -81,6 +86,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesSecond(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -91,6 +97,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesFi(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -101,6 +108,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesI(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -111,6 +119,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesP(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -121,6 +130,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesS(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -131,6 +141,7 @@ export class DataApiHouseService {
   }
 
   getAllHousesV(){
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{

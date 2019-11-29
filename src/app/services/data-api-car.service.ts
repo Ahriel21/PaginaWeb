@@ -14,7 +14,6 @@ export class DataApiCarService {
 
   constructor(private afs: AngularFirestore) {
     
-    //this.cars = this.carsCollection.valueChanges();
   }
 
   //Devuelve cada una de las variables que tiene la coleccion de los coches
@@ -31,6 +30,7 @@ export class DataApiCarService {
   }
 
   getAllCarsYear(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -41,6 +41,7 @@ export class DataApiCarService {
   }
 
   getAllCarsMonth(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -51,6 +52,7 @@ export class DataApiCarService {
   }
 
   getAllCarsDay(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -61,6 +63,7 @@ export class DataApiCarService {
   }
 
   getAllCarsHour(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -71,6 +74,7 @@ export class DataApiCarService {
   }
 
   getAllCarsMinute(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -81,6 +85,7 @@ export class DataApiCarService {
   }
 
   getAllCarsSecond(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -91,6 +96,7 @@ export class DataApiCarService {
   }
 
   getAllCarsFi(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -101,6 +107,7 @@ export class DataApiCarService {
   }
 
   getAllCarsI(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -111,6 +118,7 @@ export class DataApiCarService {
   }
 
   getAllCarsP(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -121,6 +129,7 @@ export class DataApiCarService {
   }
 
   getAllCarsS(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{
@@ -131,6 +140,7 @@ export class DataApiCarService {
   }
 
   getAllCarsV(){
+    this.carsCollection = this.afs.collection<ValuesInterface>('Coches');
     return this.cars = this.carsCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{

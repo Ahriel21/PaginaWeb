@@ -13,6 +13,7 @@ import { UserInterface } from '../models/user';
 })
 export class AuthService {
 
+
   constructor(private afsAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
 
