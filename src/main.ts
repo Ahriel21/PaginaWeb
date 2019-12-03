@@ -24,7 +24,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
     } else {
       loading = loading + 1;
       if(loading == 90){
-        preload.style.animation = "fadeout 1s ease";
+        //preload.style.animation = "fadeout 1s ease";
       }
     }
   }

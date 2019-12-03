@@ -1,47 +1,49 @@
-import { Observable } from 'rxjs';
+import { HomeComponent } from './../components/home/home.component';
 import { Injectable, OnInit } from '@angular/core';
-import { DataApiHouseService } from './data-api-house.service';
-import { DataApiCarService } from './data-api-car.service';
-import { ValuesInterface } from '../models/dashboard';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataApiGraphicService implements OnInit {
 
-  public houses = [];
-  public house = '';
 
-   public cars = [];
-   public car = '';
-
-   seconds: Observable<ValuesInterface>;
-   secondsDefinitive: ValuesInterface;
-
-
-  constructor(private dataApiHouse: DataApiHouseService,
-    private dataApiCar: DataApiCarService) { }
+  constructor(private home: HomeComponent) { 
+  }
 
   ngOnInit() {
-    
-    this.getAllCarsSecond();
-    this.getAllHouseSecond();
 
   }
 
-  getAllCarsSecond(){
-    this.dataApiCar.getAllCarsSecond().subscribe(cars =>{
-      console.log('CARS', cars);
-      this.cars = cars;
-    })
-  }
+  //Opciones para los desplegables de los datos
+  /*eleccionDatos(dato, data){
+  
+    if(dato == 'fi'){
+      //Seleccionando 1 min = 60 segundos
+      data.addColumn('number', 'fi');
+    }
 
-  getAllHouseSecond(){
-    this.dataApiHouse.getAllHouses().subscribe(houses =>{
-      console.log('HOUSES', houses);
-      this.houses = houses;
-    })
-  }
+    if(dato == 'i'){
+      //Seleccionando 5 min
+      data.addColumn('number', 'i');
+    }
+
+    if(dato == 'p'){
+      //Seleccionando 30 min
+      data.addColumn('number', 'p');
+    }
+
+    if(dato == 's'){
+      //Seleccionando 1 hora = 60 minutos
+      data.addColumn('number', 's');
+    }
+
+    if(dato == 'v'){
+      //Seleccionando 1 día = 24 horas
+      data.addColumn('number', 'v');
+    }
+  }*/
+
+  
 
     
 }

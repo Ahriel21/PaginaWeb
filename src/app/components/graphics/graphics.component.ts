@@ -1,38 +1,73 @@
-import { Component, OnInit } from '@angular/core';
 import { DataApiGraphicService } from './../../services/data-api-graphic.service';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+declare var google: any;
 
 @Component({
   selector: 'app-graphics',
   templateUrl: './graphics.component.html',
   styleUrls: ['./graphics.component.css']
 })
+export class GraphicsComponent implements AfterViewInit{
 
-export class GraphicsComponent implements OnInit {
+  //constructor(private graphicService: DataApiGraphicService){}
 
-   dataGraphic: DataApiGraphicService;
-   
-   title = 'Average Temperatures of Cities';
-   type = 'Line';
-   data = [
-      [0,  234.23, 230.64],
-      [1, 234.15, 230.49],
-      [2, 234.36, 230.51],
-      [3, 234.26, 230.88],
-      [4, 234.35, 230.71],
-      [5,  234.45, 230.27],
-   ];
-   columnNames = ["Second", "Casa", "Coche"];
-   options = {
-      chart: {
-        title: 'Título',
-        subtitle: 'Subtitulo'
-      },
-   };
-   width = 1200;
-   height = 700;
+  @ViewChild('lineChart', {static:true}) lineChart: ElementRef
 
-  constructor() {}
+  drawChart = () => {
 
-  ngOnInit() {}
+  var data = new google.visualization.DataTable();
+
+  data.addColumn('datetime', 'Horas');
+  //this.graphicService.eleccionDatos(dato, data); Cambiar por lo de abajo
+  data.addColumn('number', 'Guardians of the Galaxy');
+
+  //Para cada 15 minutos
+  
+  /*
+  for(var hora = 0; hora < 24; hora++){
+    for(var min = 0; min < 60; min+=15){
+      data.addRows([
+        [hora':'min,  i+1],
+      ]);
+    }
+  }
+  */
+
+ var horaString = '';
+ var concatena = '';
+
+ for(var hora = 0; hora < 24; hora++){
+  for(var min = 0; min < 60; min+=15){
+    var i = Math.random() * (15 - 2) + 2;
+    data.addRows([
+      //Sustituir por
+      //[new Date(ano,dia-1,mes,hora,min), valorCorrespondiente],
+      [new Date(2019,2,12,hora,min), i],
+    ]);
+  }
+}
+
+  var options = {
+    chart: {
+      title: 'Box Office Earnings in First Two Weeks of Opening',
+      subtitle: 'in millions of dollars (USD)'
+    },
+    hAxis: {
+      format: 'HH:mm'
+    },
+    'width':1300,
+    'height':700
+    
+  };
+
+  var chart = new google.charts.Line(this.lineChart.nativeElement);
+
+  chart.draw(data, options);
+}
+
+  ngAfterViewInit() {
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(this.drawChart);
+  }
 
 }

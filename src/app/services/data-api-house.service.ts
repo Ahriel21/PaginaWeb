@@ -15,6 +15,7 @@ export class DataApiHouseService {
   constructor(private afs: AngularFirestore) {
     
     //this.houses = this.housesCollection.valueChanges();
+    this.getAllHouses();
   }
 
   //Devuelve cada una de las variables que tiene la coleccion de las casas
@@ -30,7 +31,7 @@ export class DataApiHouseService {
     }));
   }
 
-  getAllHousesYear(){
+  /*getAllHousesYear(){
     this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
@@ -149,6 +150,6 @@ export class DataApiHouseService {
         return data;
       });
     }));
-  }
+  }*/
 
 }

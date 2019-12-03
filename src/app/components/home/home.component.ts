@@ -1,5 +1,7 @@
+import { DataApiHouseService } from './../../services/data-api-house.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,9 @@ import { AuthService } from './../../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  public houses = [];
+
+  constructor(private authService: AuthService, private dataApiHouse: DataApiHouseService) { }
 
   public isAdmin: any = null;
   public isEditor: any = null;
@@ -17,6 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.getCurrentUser();
+    this.getHouses();
   }
 
   getCurrentUser(){
@@ -27,6 +32,13 @@ export class HomeComponent implements OnInit {
           this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
         })
       }
+    })
+  }
+
+  getHouses(): any{
+    this.dataApiHouse.getAllHouses().subscribe(houses =>{
+      console.log('HOUSES', houses);
+      this.houses = houses;
     })
   }
   
