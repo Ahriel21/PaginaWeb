@@ -20,53 +20,62 @@ export class GraphicsComponent implements AfterViewInit{
   data.addColumn('datetime', 'Horas');
   //this.graphicService.eleccionDatos(dato, data); Cambiar por lo de abajo
   data.addColumn('number', 'Guardians of the Galaxy');
+  data.addColumn('number', 'Guardians of the Galaxy 2');
 
   //Para cada 15 minutos
-  
-  /*
   for(var hora = 0; hora < 24; hora++){
     for(var min = 0; min < 60; min+=15){
+      var i = Math.random() * (15 - 2) + 2;
       data.addRows([
-        [hora':'min,  i+1],
+        //Sustituir por
+        //[new Date(ano,mes-1,dia,hora,min), valorCorrespondiente],
+        [new Date(2019,11,3,hora,min), i,i+10],
+      ]);
+    }
+  }
+
+  /*
+  //Para cada 1 minuto
+  for(var hora = 0; hora < 24; hora++){
+    for(var min = 0; min < 60; min++){
+      var i = Math.random() * (15 - 2) + 2;
+      data.addRows([
+        //Sustituir por
+        //[new Date(ano,mes-1,dia,hora,min), valorCorrespondiente],
+        [new Date(2019,11,4,hora,min), i],
       ]);
     }
   }
   */
-
- var horaString = '';
- var concatena = '';
-
- for(var hora = 0; hora < 24; hora++){
-  for(var min = 0; min < 60; min+=15){
-    var i = Math.random() * (15 - 2) + 2;
-    data.addRows([
-      //Sustituir por
-      //[new Date(ano,dia-1,mes,hora,min), valorCorrespondiente],
-      [new Date(2019,2,12,hora,min), i],
-    ]);
-  }
-}
-
   var options = {
-    chart: {
-      title: 'Box Office Earnings in First Two Weeks of Opening',
-      subtitle: 'in millions of dollars (USD)'
-    },
-    hAxis: {
-      format: 'HH:mm'
-    },
-    'width':1300,
-    'height':700
+    //'width':1300,
+    //'height':700,
+    'displayAnnotations': true
     
   };
 
-  var chart = new google.charts.Line(this.lineChart.nativeElement);
+  //var chart = new google.charts.Line(this.lineChart.nativeElement);
 
-  chart.draw(data, options);
+  //chart.draw(data, options);
+
+  var annotatedtimeline = new google.visualization.AnnotatedTimeLine(this.lineChart.nativeElement);
+  annotatedtimeline.draw(data, options);
+
+  //Ocultar dispositivos
+  /*var hideFi_ = document.getElementById("hideFi");
+  hideFi_.onclick = function()
+   {
+      var view = new google.visualization.DataView(data);
+      view.hideColumns([2]); 
+      view.hideRows([2]);
+      annotatedtimeline.draw(view, options);
+   }*/
+
 }
 
   ngAfterViewInit() {
-    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.load('visualization', '1', {packages: ['annotatedtimeline']});
+    //google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(this.drawChart);
   }
 

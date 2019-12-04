@@ -15,35 +15,46 @@ export class DataApiGraphicService implements OnInit {
   }
 
   //Opciones para los desplegables de los datos
-  /*eleccionDatos(dato, data){
+  eleccionDatos(dato, data){
   
     if(dato == 'fi'){
-      //Seleccionando 1 min = 60 segundos
       data.addColumn('number', 'fi');
     }
 
     if(dato == 'i'){
-      //Seleccionando 5 min
       data.addColumn('number', 'i');
     }
 
     if(dato == 'p'){
-      //Seleccionando 30 min
       data.addColumn('number', 'p');
     }
 
     if(dato == 's'){
-      //Seleccionando 1 hora = 60 minutos
       data.addColumn('number', 's');
     }
 
     if(dato == 'v'){
-      //Seleccionando 1 día = 24 horas
       data.addColumn('number', 'v');
     }
-  }*/
+  }
 
   
+  añadirColumnas15Min(datoFi, datoI, datoP, datoS, datoV, data, ano, mes, dia){
 
+    if((datoFi) && (datoI) && (datoP) && (datoS) && (datoV)){
+      for(var hora = 0; hora < 24; hora++){
+        for(var min = 0; min < 60; min+=15){
+          var i = Math.random() * (15 - 2) + 2;
+          data.addRows([
+            //[
+            // new Date(ano,mes-1,dia,hora,min), 
+            // valorFi[tamaño], valorI[tamaño], valorP[tamaño], valorS[tamaño], valorV[tamaño]
+            //],
+          ]);
+        }
+      }
+    }
+
+  }
     
 }

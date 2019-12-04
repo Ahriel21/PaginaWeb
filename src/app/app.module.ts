@@ -21,6 +21,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { GoogleChartsModule } from 'angular-google-charts';
 import { GraphicsComponent } from './components/graphics/graphics.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { GraphicsComponent } from './components/graphics/graphics.component';
     RegisterComponent,
     Page404Component,
     GraphicsComponent,
+    MenuComponent,
     
   ],
   imports: [
