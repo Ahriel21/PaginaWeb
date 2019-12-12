@@ -24,6 +24,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { GraphicsComponent } from './components/graphics/graphics.component';
 import { MenuComponent } from './components/menu/menu.component';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,7 @@ import { MenuComponent } from './components/menu/menu.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule, 
     GoogleChartsModule,
-
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

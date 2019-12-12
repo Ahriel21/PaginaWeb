@@ -38,6 +38,7 @@
     "jquery": "^3.4.1",
     "jqwidgets-ng": "^8.3.2",
     "jqwidgets-scripts": "^8.3.2",
+    "ng-multiselect-dropdown": "^0.2.10",
     "ngx-spinner": "^8.0.3",
     "popper.js": "^1.16.0",
     "rxjs": "~6.4.0",

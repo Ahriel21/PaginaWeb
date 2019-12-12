@@ -4,7 +4,7 @@ a:hover,a:focus{
 }
 #accordion{
   border: 2px solid #3485ef;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
 }
 #accordion .panel{
