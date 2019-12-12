@@ -48,8 +48,6 @@ export class GraphicsComponent implements AfterViewInit{
   }
   */
   var options = {
-    //'width':1300,
-    //'height':700,
     'displayAnnotations': true
     
   };

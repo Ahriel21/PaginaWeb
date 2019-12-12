@@ -1,14 +1,19 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="mb-5 mt-5">
-  <div class="container">
-      
-    <h1 *ngIf="isAdmin == true; else noAdmin" class="display-3">Soy admin!</h1>
-    <ng-template #noAdmin>
-      <h1 class="display-3">Soy editor!</h1>
-    </ng-template>
-    <app-graphics></app-graphics>
-    <app-menu></app-menu>
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-menu></app-menu>
+        </div>
+        <div class="col-md-9">
+            <app-graphics></app-graphics>
+        </div>
+    </div>
+    
+  <!--<h1 *ngIf="isAdmin == true; else noAdmin" class="display-3">Soy admin!</h1>
+  <ng-template #noAdmin>
+    <h1 class="display-3">Soy editor!</h1>
+  </ng-template>-->
+  
 </div>
 
 

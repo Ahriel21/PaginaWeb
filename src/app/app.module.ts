@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTreeModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,12 +40,14 @@ import { MenuComponent } from './components/menu/menu.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatTreeModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule, 
     GoogleChartsModule,
+
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
