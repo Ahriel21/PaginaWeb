@@ -26,6 +26,10 @@ import { MenuComponent } from './components/menu/menu.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { FooterComponent } from './components/footer/footer.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +41,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     Page404Component,
     GraphicsComponent,
     MenuComponent,
+    FooterComponent,
     
   ],
   imports: [
@@ -49,7 +54,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AngularFireDatabaseModule,
     AngularFireStorageModule, 
     GoogleChartsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDaterangepickerMd.forRoot(),
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

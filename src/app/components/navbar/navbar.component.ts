@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService, private afsAuth: AngularFireAuth) { }
 
-  public app_name: string = 'Nombre aplicacion';
+  public app_name: string = 'ElectricUJA';
   public isLogged: boolean = false;
   public isAdmin: boolean = false; //Valor que indica si la persona que entra es el administrador
 

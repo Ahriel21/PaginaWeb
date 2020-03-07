@@ -1,3 +1,4 @@
+import { ValuesInterface } from './../../models/dashboard';
 import { DataApiHouseService } from './../../services/data-api-house.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
@@ -10,7 +11,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class HomeComponent implements OnInit {
 
-  public houses = [];
+ houses: ValuesInterface[];
 
   constructor(private authService: AuthService, private dataApiHouse: DataApiHouseService) { }
 
@@ -20,8 +21,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getCurrentUser();
-    this.getHouses();
+    //this.getCurrentUser();
+    //this.getHouses();
+    //this.getHousesP();
+    //this.getHousesV();
   }
 
   getCurrentUser(){
@@ -37,9 +40,9 @@ export class HomeComponent implements OnInit {
 
   getHouses(): any{
     this.dataApiHouse.getAllHouses().subscribe(houses =>{
-      console.log('HOUSES', houses);
       this.houses = houses;
-    })
+    });
+    return this.houses;
   }
   
 
