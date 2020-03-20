@@ -4,5 +4,8 @@ export interface Selected {
     isP? :boolean;
     isV? : boolean;
     isS? : boolean;
+    isHouseOne? : boolean;
+    isCarOne? : boolean;
+    isFotovoltaicaOne? : boolean;
 }
 

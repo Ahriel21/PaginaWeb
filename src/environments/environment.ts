@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
 
-  //Cambiar cuando tenga la base de datos verdadera
   firebaseConfig: {
     apiKey: "AIzaSyC4uCoEiCgd3P1m8OTJKmcJkq8LRaviztQ",
     authDomain: "mitfg-7a053.firebaseapp.com",

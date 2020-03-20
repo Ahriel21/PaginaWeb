@@ -30,7 +30,9 @@
                 [(ngModel)]="selectedItemsDisp"
                 [settings]="dropdownSettingsDisp"
                 (onSelect)="onItemSelect($event)"
-                (onSelectAll)="onSelectAll($event)"
+                (onDeSelect)="onItemDeSelect($event)"
+                (onSelectAll)="onItemSelectAll($event)"
+                (onDeSelectAll)="onItemDeSelectAll($event)"
               >
             </ng-multiselect-dropdown>
         </div>

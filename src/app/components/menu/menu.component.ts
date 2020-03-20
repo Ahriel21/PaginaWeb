@@ -32,15 +32,12 @@ export class MenuComponent implements OnInit {
   
   getDispositivos(){
     this.dropdownListDisp = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      { item_id: 1, item_text: 'Casa 1' },
+      { item_id: 2, item_text: 'Coche 1' },
+      { item_id: 3, item_text: 'Fotovoltaica 1' },
     ];
     this.selectedItemsDisp = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
+      { item_id: 1, item_text: 'Casa 1' },
     ];
     this.dropdownSettingsDisp = {
       singleSelection: false,
@@ -83,28 +80,33 @@ export class MenuComponent implements OnInit {
   //Para saber cual está seccionado
   onItemSelect(item: any){
     
-    this.getSelected();
+    this.getSelectedUnit();
+    this.getSelectedDisp();
   }
 
   //Para saber cual está deseleccionado
   onItemDeSelect(item: any){
 
-    this.getDeSelected();
+    this.getDeSelectedUnit();
+    this.getDeSelectedDisp();
   }
 
   //Para saber si se seleccionan todos
   onItemSelectAll(item: any){
     
-    this.getSelectedAll();
+    this.getSelectedAllUnit();
+    this.getSelectedAllDisp();
   }
 
   //Para saber si se deseleccionan todos
   onItemDeSelectAll(item: any){
 
-    this.getDeSelectedAll();
+    this.getDeSelectedAllUnit();
+    this.getDeSelectedAllDisp();
   }
 
-  getSelected(){
+  //Funciones para el filtro de unidades de medida
+  getSelectedUnit(){
 
     this.isSelected.isFi = false;
     this.isSelected.isI = false;
@@ -151,7 +153,8 @@ export class MenuComponent implements OnInit {
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_V), this.isSelected.isV);
   }
 
-  getDeSelected(){
+  getDeSelectedUnit(){
+
     this.isSelected.isFi = false;
     this.isSelected.isI = false;
     this.isSelected.isP = false;
@@ -196,7 +199,7 @@ export class MenuComponent implements OnInit {
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_V), this.isSelected.isV);
   }
 
-  getSelectedAll(){
+  getSelectedAllUnit(){
 
     this.isSelected.isFi = true;
     this.isSelected.isI = true;
@@ -211,7 +214,7 @@ export class MenuComponent implements OnInit {
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_V), this.isSelected.isV);
   }
 
-  getDeSelectedAll(){
+  getDeSelectedAllUnit(){
     this.isSelected.isFi = false;
     this.isSelected.isI = false;
     this.isSelected.isP = false;
@@ -223,6 +226,94 @@ export class MenuComponent implements OnInit {
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_P), this.isSelected.isP);
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_S), this.isSelected.isS);
     this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_V), this.isSelected.isV);
+  }
+
+  //Funciones para seleccionar los dispositivos
+  getSelectedDisp(){
+
+    this.isSelected.isHouseOne = false;
+    this.isSelected.isCarOne = false;
+    this.isSelected.isFotovoltaicaOne = false;
+    
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Casa 1'){
+        this.isSelected.isHouseOne = true;
+      }
+
+    }
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Coche 1'){
+        this.isSelected.isCarOne = true;
+      }
+    }
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Fotovoltaica 1'){
+        this.isSelected.isFotovoltaicaOne = true;
+      }
+    }
+
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_HOUSE_ONE), this.isSelected.isHouseOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_CAR_ONE), this.isSelected.isCarOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_FOTOVOLTAICA_ONE), this.isSelected.isFotovoltaicaOne);
+  }
+
+  getDeSelectedDisp(){
+    
+    this.isSelected.isHouseOne = false;
+    this.isSelected.isCarOne = false;
+    this.isSelected.isFotovoltaicaOne = false;
+    
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Casa 1'){
+        this.isSelected.isHouseOne = true;
+      }
+
+    }
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Coche 1'){
+        this.isSelected.isCarOne = true;
+      }
+    }
+
+    for(var i=0; i<this.selectedItemsDisp.length; i++){
+      if(this.selectedItemsDisp[i].item_text == 'Fotovoltaica 1'){
+        this.isSelected.isFotovoltaicaOne = true;
+      }
+    }
+
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_HOUSE_ONE), this.isSelected.isHouseOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_CAR_ONE), this.isSelected.isCarOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_FOTOVOLTAICA_ONE), this.isSelected.isFotovoltaicaOne);
+  
+  }
+
+  getSelectedAllDisp(){
+
+    this.isSelected.isHouseOne = true;
+    this.isSelected.isCarOne = true;
+    this.isSelected.isFotovoltaicaOne = true;
+
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_HOUSE_ONE), this.isSelected.isHouseOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_CAR_ONE), this.isSelected.isCarOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_FOTOVOLTAICA_ONE), this.isSelected.isFotovoltaicaOne);
+  
+  }
+
+  getDeSelectedAllDisp(){
+
+    this.isSelected.isHouseOne = false;
+    this.isSelected.isCarOne = false;
+    this.isSelected.isFotovoltaicaOne = false;
+
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_HOUSE_ONE), this.isSelected.isHouseOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_CAR_ONE), this.isSelected.isCarOne);
+    this.eventService.broadcast((new SuscribeTypes().IS_SELECTED_FOTOVOLTAICA_ONE), this.isSelected.isFotovoltaicaOne);
+  
   }
   
 }

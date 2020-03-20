@@ -1,0 +1,17 @@
+footer a, footer {
+    color: white;
+}
+
+footer {
+    background: #3485ef !important;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.footer-copyright {
+    background: #3485ef !important;
+}
