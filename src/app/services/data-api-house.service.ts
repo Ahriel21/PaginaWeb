@@ -19,7 +19,7 @@ export class DataApiHouseService {
 
   //Devuelve cada una de las variables que tiene la coleccion de las casas
   getAllHouses(){
-    this.housesCollection = this.afs.collection<ValuesInterface>('prueba2');
+    this.housesCollection = this.afs.collection<ValuesInterface>('Casas');
     return this.houses = this.housesCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map( action =>{

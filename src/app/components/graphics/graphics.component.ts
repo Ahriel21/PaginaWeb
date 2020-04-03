@@ -3,6 +3,7 @@ import { element } from 'protractor';
 import { SuscribeTypes } from './../../models/subscribeTypes';
 import { EventService } from './../../services/event.service';
 import { Selected } from './../../models/selected';
+import { Datee } from './../../models/datee';
 import { MenuComponent } from './../menu/menu.component';
 import { ValuesInterface } from './../../models/dashboard';
 import { DataApiHouseService } from './../../services/data-api-house.service';
@@ -19,12 +20,21 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
 
   houses: ValuesInterface[] = [];
   cars: ValuesInterface[] = [];
+
+  housesByDate: ValuesInterface[] = [];
+  carsByDate: ValuesInterface[] = [];
+
   cont : number = 0;
   menu : MenuComponent;
+
   isSelected : Selected = {};
   isSelectedDisp : Selected = {};
   selectedUnit : Selected = {};
   selectedDisp : Selected = {};
+
+  datee : Datee = {};
+  getDatee : Datee = {};
+
   suscribeTypes : SuscribeTypes = new SuscribeTypes();
 
   constructor(
@@ -41,12 +51,22 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
       this.isSelectedDisp.isHouseOne = true;
       this.isSelectedDisp.isCarOne = false;
       this.isSelectedDisp.isFotovoltaicaOne = false;
+
+      this.datee.startYear = 2019;
+      this.datee.endYear = 2019;
+      this.datee.startMonth = 1;
+      this.datee.endMonth = 1;
+      this.datee.startDay = 1;
+      this.datee.endDay = 1;
     }
 
   ngOnInit() {
+
+    this.getDatee = this.getDate();
     
     this.getDataHouses();
     this.getDataCars();
+
     this.selectedUnit = this.getSelectedUnit();
     this.selectedDisp = this.getSelectedDisp();
   }
@@ -74,25 +94,52 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
 
     this.houses.forEach(element => {
 
-      data.addRows([
-        [
-          new Date(element.ano,element.mes-1, element.dia, element.hora, element.minuto),
-          element.fi,
-          element.i,
-          element.p,
-          element.s,
-          element.v,
-          this.cars[this.cont].fi,
-          this.cars[this.cont].i,
-          this.cars[this.cont].p,
-          this.cars[this.cont].s,
-          this.cars[this.cont].v
-        ]
-      ]);
+      /*if(
+        ((element.ano >= this.getDatee.startYear) && (element.ano <= this.getDatee.endYear)) &&
+        ((element.mes >= this.getDatee.startMonth) && (element.mes <= this.getDatee.endMonth)) &&
+        ((element.dia >= this.getDatee.startDay) && (element.dia <= this.getDatee.endDay)) 
+      ){
+
+        console.log("Entro")
+      }*/
+
+      if((element.ano >= this.getDatee.startYear) && (element.ano <= this.getDatee.endYear)){
+        if((element.mes >= this.getDatee.startMonth) && (element.mes <= this.getDatee.endMonth)){
+          if((element.dia >= this.getDatee.startDay) && (element.dia <= this.getDatee.endDay)){
+            
+            data.addRows([
+              [
+                new Date(element.ano,element.mes-1, element.dia, element.hora, element.minuto),
+                element.fi,
+                element.i,
+                element.p,
+                element.s,
+                element.v,
+                this.cars[this.cont].fi,
+                this.cars[this.cont].i,
+                this.cars[this.cont].p,
+                this.cars[this.cont].s,
+                this.cars[this.cont].v
+              ]
+            ]);
+    
+          }
+        }
+      }
 
       this.cont++;
 
     });
+
+    if(data.getNumberOfRows() == 0){
+      data.addRows([
+        [
+          new Date(this.datee.startYear,this.datee.startMonth - 1, this.datee.startDay, 0, 0),
+          0,0,0,0,0,0,0,0,0,0
+        ]
+      ]);
+      
+    }
 
     //Filtro de unidad de medida
     this.filterUnitMeasurement(data);
@@ -135,6 +182,45 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
     });
   }
 
+
+  getDate() : Datee {
+
+    this.eventService.subscribe(this.suscribeTypes.START_DAY, (data) => {
+      this.datee.startDay = data;
+
+      google.charts.setOnLoadCallback(this.drawChart);
+      
+    });
+
+    this.eventService.subscribe(this.suscribeTypes.START_MONTH, (data) => {
+      this.datee.startMonth = data;
+      
+    });
+
+    this.eventService.subscribe(this.suscribeTypes.START_YEAR, (data) => {
+      this.datee.startYear = data;
+      
+    });
+
+    this.eventService.subscribe(this.suscribeTypes.END_DAY, (data) => {
+      this.datee.endDay = data;
+
+    });
+
+    this.eventService.subscribe(this.suscribeTypes.END_MONTH, (data) => {
+      this.datee.endMonth = data;
+      
+    });
+
+    this.eventService.subscribe(this.suscribeTypes.END_YEAR, (data) => {
+      this.datee.endYear = data;
+      
+    });
+
+    
+    return this.datee;
+
+  }
 
   getSelectedUnit() : Selected{
     //Parte de Fi
@@ -201,8 +287,6 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
 
     if(this.isSelectedDisp.isCarOne && this.isSelectedDisp.isHouseOne){
 
-      console.log("Entro aqui")
-
       if(this.isSelectedDisp.isHouseOne){
         if(!this.selectedUnit.isFi){
           data.removeColumn(data.getNumberOfColumns() - 10);
@@ -240,8 +324,6 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
       }
 
     }else{
-
-      console.log("Entro aqui xD")
 
       if(!this.isSelectedDisp.isCarOne && !this.isSelectedDisp.isHouseOne){
 

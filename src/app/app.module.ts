@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
@@ -27,8 +28,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { FooterComponent } from './components/footer/footer.component';
-
 
 @NgModule({
   declarations: [

@@ -10,7 +10,14 @@
       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
               <!--dateRange-->
-            <input type="text" ngxDaterangepickerMd [(ngModel)]="selected" class="form-control"/>
+              <input type="text" matInput
+                ngxDaterangepickerMd
+                [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                startKey="start"
+                endKey="end"
+                [(ngModel)]="dateRange"
+                (ngModelChange)="datepickerChange($event)"
+                name="daterange"/>
           </div>
       </div>
   </div>

@@ -1,9 +1,10 @@
 import { SuscribeTypes } from './../../models/subscribeTypes';
 import { EventService } from './../../services/event.service';
 import { Selected } from './../../models/selected';
+import { Datee } from './../../models/datee';
 import { Component, OnInit} from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { endOfDay, endOfMonth, format, startOfDay, startOfMonth } from 'date-fns';
 
 @Component({
   selector: 'app-menu',
@@ -20,16 +21,29 @@ export class MenuComponent implements OnInit {
   selectedItemsUnidad = [];
   dropdownSettingsUnidad:IDropdownSettings = {};
 
+  startDay : number;
+  endDay : number;
+  startMonth : number;
+  endMonth : number;
+  startYear : number;
+  endYear : number;
+
+  //selected: {start: Date, end: Date};
+  dateRange : Datee = {};
   isSelected : Selected = {};
 
-  constructor( private eventService : EventService, ) {}
+  constructor( private eventService : EventService, ) {
+    //this.dateRange = [new Date(), new Date()];
+  }
 
   ngOnInit() {
     this.getDispositivos();
     this.getUnidadMedida();
-
+    
   }
-  
+
+  //Parte de los dispositivos
+
   getDispositivos(){
     this.dropdownListDisp = [
       { item_id: 1, item_text: 'Casa 1' },
@@ -51,6 +65,7 @@ export class MenuComponent implements OnInit {
     };
   }
 
+  //Parte de las unidades de medida
   getUnidadMedida(){
     this.dropdownListUnidad = [
       { item_id: 1, item_text: 'fi' },
@@ -76,8 +91,37 @@ export class MenuComponent implements OnInit {
     };
   }
 
+  //Parte para saber cual es la fecha seleccionada
+  datepickerChange(event){
+    console.log(
+      //format(new Date(event.start._d), 'yyyy-MM-dd'),
+      new Date(event.start._d).getDate(),
+      new Date(event.start._d).getMonth() + 1,
+      new Date(event.start._d).getFullYear(),
+      new Date(event.end._d).getDate(),
+      new Date(event.end._d).getMonth() + 1,
+      new Date(event.end._d).getFullYear()
+    )
 
-  //Para saber cual está seccionado
+    this.dateRange.startDay = new Date(event.start._d).getDate();
+    this.dateRange.startMonth = new Date(event.start._d).getMonth() + 1;
+    this.dateRange.startYear = new Date(event.start._d).getFullYear();
+
+    this.dateRange.endDay = new Date(event.end._d).getDate();
+    this.dateRange.endMonth = new Date(event.end._d).getMonth() + 1;
+    this.dateRange.endYear = new Date(event.end._d).getFullYear();
+
+    this.eventService.broadcast((new SuscribeTypes().START_DAY), this.dateRange.startDay);
+    this.eventService.broadcast((new SuscribeTypes().START_MONTH), this.dateRange.startMonth);
+    this.eventService.broadcast((new SuscribeTypes().START_YEAR), this.dateRange.startYear);
+    this.eventService.broadcast((new SuscribeTypes().END_DAY), this.dateRange.endDay);
+    this.eventService.broadcast((new SuscribeTypes().END_MONTH), this.dateRange.endMonth);
+    this.eventService.broadcast((new SuscribeTypes().END_YEAR), this.dateRange.endYear);
+
+  }
+
+
+  //Para saber cual está seleccionado
   onItemSelect(item: any){
     
     this.getSelectedUnit();
