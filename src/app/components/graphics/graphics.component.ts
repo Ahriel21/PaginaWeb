@@ -1,5 +1,3 @@
-import { forkJoin  } from 'rxjs';
-import { element } from 'protractor';
 import { SuscribeTypes } from './../../models/subscribeTypes';
 import { EventService } from './../../services/event.service';
 import { Selected } from './../../models/selected';
@@ -33,7 +31,8 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
   selectedDisp : Selected = {};
 
   datee : Datee = {};
-  getDatee : Datee = {};
+  getDatee_ : Datee = {};
+  now = new Date();
 
   suscribeTypes : SuscribeTypes = new SuscribeTypes();
 
@@ -52,17 +51,17 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
       this.isSelectedDisp.isCarOne = false;
       this.isSelectedDisp.isFotovoltaicaOne = false;
 
-      this.datee.startYear = 2019;
-      this.datee.endYear = 2019;
-      this.datee.startMonth = 1;
-      this.datee.endMonth = 1;
-      this.datee.startDay = 1;
-      this.datee.endDay = 1;
+      this.datee.startYear = this.now.getFullYear();
+      this.datee.endYear = this.now.getFullYear();
+      this.datee.startMonth = this.now.getMonth() + 1;
+      this.datee.endMonth = this.now.getMonth() + 1;
+      this.datee.startDay = this.now.getDate();
+      this.datee.endDay = this.now.getDate();
     }
 
   ngOnInit() {
 
-    this.getDatee = this.getDate();
+    this.getDatee_ = this.getDatee();
     
     this.getDataHouses();
     this.getDataCars();
@@ -94,18 +93,9 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
 
     this.houses.forEach(element => {
 
-      /*if(
-        ((element.ano >= this.getDatee.startYear) && (element.ano <= this.getDatee.endYear)) &&
-        ((element.mes >= this.getDatee.startMonth) && (element.mes <= this.getDatee.endMonth)) &&
-        ((element.dia >= this.getDatee.startDay) && (element.dia <= this.getDatee.endDay)) 
-      ){
-
-        console.log("Entro")
-      }*/
-
-      if((element.ano >= this.getDatee.startYear) && (element.ano <= this.getDatee.endYear)){
-        if((element.mes >= this.getDatee.startMonth) && (element.mes <= this.getDatee.endMonth)){
-          if((element.dia >= this.getDatee.startDay) && (element.dia <= this.getDatee.endDay)){
+      if((element.ano >= this.getDatee_.startYear) && (element.ano <= this.getDatee_.endYear)){
+        if((element.mes >= this.getDatee_.startMonth) && (element.mes <= this.getDatee_.endMonth)){
+          if((element.dia >= this.getDatee_.startDay) && (element.dia <= this.getDatee_.endDay)){
             
             data.addRows([
               [
@@ -183,7 +173,7 @@ export class GraphicsComponent implements AfterViewInit, OnInit{
   }
 
 
-  getDate() : Datee {
+  getDatee() : Datee {
 
     this.eventService.subscribe(this.suscribeTypes.START_DAY, (data) => {
       this.datee.startDay = data;
