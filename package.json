@@ -38,7 +38,7 @@
     "chart.js": "^2.5.0",
     "date-fns": "^2.11.1",
     "firebase": "^7.4.0",
-    "firestore-export-import": "^0.3.1",
+    "firestore-export-import": "^1.6.0",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
@@ -55,7 +55,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.12",
+    "@angular-devkit/build-angular": "~21.0.1",
     "@angular/cli": "~8.3.12",
     "@angular/compiler-cli": "~8.2.11",
     "@angular/language-service": "~8.2.11",
